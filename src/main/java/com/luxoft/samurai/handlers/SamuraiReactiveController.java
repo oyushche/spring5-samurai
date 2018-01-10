@@ -7,19 +7,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/rest/samurai")
-public class SamuraiController
+@RequestMapping("/reactive/samurai")
+public class SamuraiReactiveController
 {
     @Autowired
     private SamuraiRepository repository;
 
     @GetMapping("/{id}")
-    public Samurai byId(@PathVariable String id)
+    public Mono<Samurai> byId(@PathVariable String id)
     {
-        System.err.println("--> RestController # Get samurai by id handled, id: " + id);
+        System.err.println("--> ReactiveController # Get samurai by id handled, id: " + id);
 
-        return this.repository.get(Long.parseLong(id)).block();
+        return this.repository.get(Long.parseLong(id));
     }
 }

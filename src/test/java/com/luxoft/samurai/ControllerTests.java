@@ -48,7 +48,7 @@ public class ControllerTests
                 -> SamuraiGenerator.generateSamuraiWithIdAndName(id, name)))
                 .when(this.repository).get(id);
 
-        this.mockMvc.perform(get("/samurai/" + id).accept(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/rest/samurai/" + id).accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content()
