@@ -5,11 +5,21 @@ import com.luxoft.samurai.data.Samurai;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class SamuraiGenerator
 {
+    private static final Random RND = new Random();
+
     private static int counter = 0;
     private static String names[] = {"Kurasava", "Nakamuro", "Tonukato", "Oleh"};
+
+    private static Activity[] activities = new Activity[]
+            {
+                    new Activity("Jump"),
+                    new Activity("Kill"),
+                    new Activity("Meditate")
+            };
 
     public static Samurai generateSamurai()
     {
@@ -37,11 +47,12 @@ public class SamuraiGenerator
 
     private static List<Activity> getActivityList()
     {
-        return Arrays.asList(new Activity[]
-                {
-                        new Activity("Jump"),
-                        new Activity("Kill"),
-                        new Activity("Meditate")
-                });
+        return Arrays.asList(activities);
     }
+
+    public static String getRandomActivity()
+    {
+        return activities[RND.nextInt(activities.length - 1)].getName();
+    }
+
 }
