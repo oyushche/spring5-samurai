@@ -31,11 +31,11 @@ public class SamuraiClient
     @Bean
     CommandLineRunner demo(WebClient client)
     {
-//        return getSamuraiList(client);
+        return getSamuraiList(client);
 
 //        return addGeneratedSamurai(client);
 
-        return addActivitySamuraiById(client, 1);
+//        return addActivitySamuraiById(client, 1);
     }
 
     private CommandLineRunner addActivitySamuraiById(WebClient client, long samuraiId)

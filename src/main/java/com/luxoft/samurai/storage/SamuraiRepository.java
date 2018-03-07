@@ -16,4 +16,6 @@ public interface SamuraiRepository
     Flux<Activity> getAllActivities(long id);
 
     Mono<Void> addActivity(long id, Mono<Activity> activity);
+
+    Mono<Void> removeActivity(long samuraiId, String activity);
 }

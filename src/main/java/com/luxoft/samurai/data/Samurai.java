@@ -1,5 +1,6 @@
 package com.luxoft.samurai.data;
 
+import com.luxoft.SamuraiGenerator;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,5 +29,10 @@ public class Samurai
     public void setActivity(List<Activity> activity)
     {
         this.activity = new ArrayList<>(activity);
+    }
+
+    public Action doSomething()
+    {
+        return new Action(SamuraiGenerator.getRandomAction());
     }
 }

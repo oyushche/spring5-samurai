@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/rest/samurai")
 public class SamuraiController
@@ -21,5 +23,13 @@ public class SamuraiController
         System.err.println("--> RestController # Get samurai by id handled, id: " + id);
 
         return this.repository.get(Long.parseLong(id)).block();
+    }
+
+    @GetMapping()
+    public List<Samurai> all()
+    {
+        System.err.println("--> RestController # Returns list of Samurai objects");
+
+        return this.repository.all().collectList().block();
     }
 }

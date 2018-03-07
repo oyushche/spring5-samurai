@@ -14,7 +14,6 @@ import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 import java.time.LocalTime;
-import java.util.Date;
 
 @RestController
 @RequestMapping("/reactive/samurai")
@@ -36,10 +35,10 @@ public class SamuraiReactiveController
     {
         System.err.println("--> ReactiveController # Spy samurai by id handled, id: " + id);
 
-
+        Mono<Samurai> samuraiMono = byId(id);
 
         return Flux
-                .<String>generate(sink -> sink.next(LocalTime.now() + ": " + SamuraiGenerator.getRandomActivity()))
+                .<String>generate(sink -> sink.next(LocalTime.now() + ": " + samuraiMono.block().doSomething()))
                 .delayElements(Duration.ofSeconds(1));
     }
 

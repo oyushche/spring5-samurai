@@ -32,6 +32,13 @@ public class MapBasedSamuraiRepository implements SamuraiRepository
     }
 
     @Override
+    public Flux<Activity> getAllActivities(long id)
+    {
+        return Flux.fromIterable(repository.get(id).getActivity());
+    }
+
+
+    @Override
     public Mono<Void> addActivity(long id, Mono<Activity> activity)
     {
         return activity
@@ -40,9 +47,11 @@ public class MapBasedSamuraiRepository implements SamuraiRepository
     }
 
     @Override
-    public Flux<Activity> getAllActivities(long id)
+    public Mono<Void> removeActivity(long samuraiId, String activity)
     {
-        return Flux.fromIterable(repository.get(id).getActivity());
+        return get(samuraiId)
+                .doOnNext(s -> s.getActivity().removeIf(a -> activity.equals(a.getName())))
+                .thenEmpty(Mono.empty());
     }
 
     @Override

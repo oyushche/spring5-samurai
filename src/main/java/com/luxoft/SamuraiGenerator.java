@@ -1,5 +1,6 @@
 package com.luxoft;
 
+import com.luxoft.samurai.data.Action;
 import com.luxoft.samurai.data.Activity;
 import com.luxoft.samurai.data.Samurai;
 
@@ -19,6 +20,17 @@ public class SamuraiGenerator
                     new Activity("Jump"),
                     new Activity("Kill"),
                     new Activity("Meditate")
+            };
+
+    private static String[] actions =
+            {
+                    "Jumped from the rock",
+                    "Killed butterfly",
+                    "Cut own leg",
+                    "Broke kitchen table",
+                    "Smoking",
+                    "Having lunch",
+                    "Taking a bath"
             };
 
     public static Samurai generateSamurai()
@@ -50,9 +62,9 @@ public class SamuraiGenerator
         return Arrays.asList(activities);
     }
 
-    public static String getRandomActivity()
+    public static String getRandomAction()
     {
-        return activities[RND.nextInt(activities.length - 1)].getName();
+        return actions[RND.nextInt(actions.length - 1)];
     }
 
 }
